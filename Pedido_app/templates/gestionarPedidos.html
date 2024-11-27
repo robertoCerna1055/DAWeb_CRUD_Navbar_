@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block cuerpo %} 
+  {% load static %}
+
+ <div class="row"> <!-- La fila -->
+
+   <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- Columna izquierda -->
+    <h1>Pedidos</h1>
+    <div class="card">
+      <div class="card-body">
+        <form action="registrarPedidos/" method="POST"> {% csrf_token %} <!-- Falta action -->
+          <div class="form-group">
+            <input type="number" id="txtidpedido" name="txtidpedido" placeholder="Id Pedido" minlength="1" maxlength="6" class="form-control" required>
+          </div>
+          <div class="form-group py-3">
+            <input type="date" id="txtfechapedido" name="txtfechapedido" placeholder="Fecha Pedido" maxlength="45" class="form-control" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="number" id="txtidcliente" name="txtidcliente" placeholder="Id Cliente" minlength="1" maxlength="6" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <input type="number" id="txttotalpedido" name="txttotalpedido" placeholder="Total Pedido" maxlength="15" class="form-control" required>
+          </div>
+          <div class="form-group py-3">
+            <input type="date" id="txtfechaentrega" name="txtfechaentrega" placeholder="Fecha Entrega" maxlength="15" class="form-control" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtdireccion" name="txtdireccion" placeholder="Direccion" maxlength="50" class="form-control" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="number" id="txtidempleado" name="txtidempleado" placeholder="Id Empleado" minlength="1" maxlength="6" class="form-control" required>
+          </div>
+          <div class="form-group py-2">
+            <button type="submit" class="btn btn-primary">Guardar Pedido</button>
+          </div>
+
+        </form>
+      </div>
+    </div> <!-- Tarjeta -->
+   </div> <!-- Columna izquierda -->
+
+   <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Columna derecha -->
+   <h1>Listado de Pedidos</h1>
+   <img class="w-50" src="{% static 'img/clientesImage.jpg' %}" alt="hoa" width="100" height="auto">
+    <br>
+    <br>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Id Pedido</th>
+        <th scope="col">Fecha Pedido</th>
+        <th scope="col">Id Cliente</th>
+        <th scope="col">Total pedido</th>
+        <th scope="col">Fecha de entrega</th>
+        <th scope="col">Direccion</th>
+        <th scope="col">Id Empleado</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      {% for m in mispedidos %}
+      
+      <tr>
+        <td> {{forloop.counter}} </td>
+        <td> {{m.id_pedido}} </td>
+        <td> {{m.fecha_pedido}} </td>
+        <td> {{m.id_cliente}} </td>
+        <td> {{m.total_pedido}} </td>
+        <td> {{m.fecha_entrega}} </td>
+        <td> {{m.direccion_entrega}} </td>
+        <td> {{m.id_empleado}} </td>
+        <td> <a href="seleccionarPedidos/{{m.id_pedido}}" class="btn btn-info"> Editar</a> </td> <!-- Falta -->
+        <td> <a href="borrarPedidos/{{m.id_pedido}}" class="btn btn-danger"> Borrar</a> </td> <!-- Falta -->
+      </tr>
+      
+      
+      
+      {% endfor %}
+      
+    </tbody>
+  </table>
+
+ </div> <!-- Columna derecha -->
+
+ 
+
+{% endblock %}

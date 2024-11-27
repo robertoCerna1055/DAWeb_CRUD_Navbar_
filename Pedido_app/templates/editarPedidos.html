@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<div class="row"> <!-- Fila en editar-->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Pedidos</h2>
+        <!-- Aqui codigo tarjeta -->
+
+            <div class="card">
+                <div class="card-body">
+                <form action="/editarPedidos/" method="POST"> {% csrf_token %} <!-- Falta action -->
+                    <div class="form-group">
+                    <input type="number" id="txtidpedido" name="txtidpedido" minlength="1" maxlength="6" value="{{mispedidos.id_pedido}}" class="form-control" readonly required>
+                    </div>
+                    <div class="form-group py-3">
+                    <input type="date" id="txtfechapedido" name="txtfechapedido" value="{{mispedidos.fecha_pedido}}" maxlength="45" class="form-control" required>
+                    </div>
+                    <div class="form-group py-2">
+                    <input type="number" id="txtidcliente" name="txtidcliente" minlength="1" maxlength="6" value="{{mispedidos.id_cliente}}" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="txttotalpedido" name="txttotalpedido" maxlength="45" value="{{mispedidos.total_pedido}}" class="form-control" required>
+                        </div>
+                        <div class="form-group py-3">
+                        <input type="date" id="txtfechaentrega" name="txtfechaentrega" value="{{mispedidos.fecha_entrega}}" maxlength="15" class="form-control" required>
+                        </div>
+                        <div class="form-group py-2">
+                        <input type="text" id="txtdireccion" name="txtdireccion" maxlength="45" value="{{mispedidos.direccion_entrega}}" class="form-control" required>
+                        </div>
+                        <div class="form-group py-2">
+                        <input type="number" id="txtidempleado" name="txtidempleado" minlength="1" maxlength="6" value="{{mispedidos.id_empleado}}" class="form-control" required>
+                        </div>
+                        <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar Pedidos</button>
+                        </div>
+                </form>
+                </div>
+            </div> <!-- Tarjeta -->
+
+
+        <!-- Aqui codigo tarjeta -->
+
+    
+    </div> 
+
+</div> <!-- Fila en editar-->
+
+
+{% endblock %}
