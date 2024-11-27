@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block cuerpo %} 
+  {% load static %}
+
+ <div class="row"> <!-- La fila -->
+
+   <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- Columna izquierda -->
+    <h1>Proveedores</h1>
+    <div class="card">
+      <div class="card-body">
+        <form action="registrarProveedores/" method="POST"> {% csrf_token %} <!-- Falta action -->
+          <div class="form-group">
+            <input type="text" id="txtidproveedor" name="txtidproveedor" placeholder="Id Proveedor" minlength="1" maxlength="6" class="form-control" required>
+          </div>
+          <div class="form-group py-3">
+            <input type="text" id="txtnombreproveedor" name="txtnombreproveedor" placeholder="Nombre Proveedor" maxlength="45" class="form-control" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtdireccion" name="txtdireccion" placeholder="Direccion Proveedor" maxlength="100" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="txttelefono" name="txttelefono" placeholder="Telefono Proveedor" maxlength="15" class="form-control" required>
+          </div>
+          <div class="form-group py-3">
+            <input type="text" id="txtcorreo" name="txtcorreo" placeholder="Correo Proveedor" maxlength="45" class="form-control" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtstock" name="txtstock" placeholder="Stock Proveedor" maxlength="45" class="form-control" required>
+          </div>
+          <div class="form-group py-2">
+            <button type="submit" class="btn btn-primary">Guardar Proveedor</button>
+          </div>
+
+        </form>
+      </div>
+    </div> <!-- Tarjeta -->
+   </div> <!-- Columna izquierda -->
+
+   <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Columna derecha -->
+   <h1>Listado de Proveedores</h1>
+   <img class="w-50" src="{% static 'img/sucursales.png' %}" alt="hoa" width="100" height="auto">
+    <br>
+    <br>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Id_Proveedor</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Direccion</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Correo electronico</th>
+        <th scope="col">Stock</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      {% for m in misproveedores %}
+      
+      <tr>
+        <td> {{forloop.counter}} </td>
+        <td> {{m.id_proveedor}} </td>
+        <td> {{m.nombre}} </td>
+        <td> {{m.direccion}} </td>
+        <td> {{m.telefono}} </td>
+        <td> {{m.c_electronico}} </td>
+        <td> {{m.stock}} </td>
+        <td> <a href="seleccionarProveedores/{{m.id_proveedor}}" class="btn btn-info"> Editar</a> </td> <!-- Falta -->
+        <td> <a href="borrarProveedores/{{m.id_proveedor}}" class="btn btn-danger"> Borrar</a> </td> <!-- Falta -->
+      </tr>
+      
+      
+      
+      {% endfor %}
+      
+    </tbody>
+  </table>
+
+ </div> <!-- Columna derecha -->
+
+ 
+
+{% endblock %}

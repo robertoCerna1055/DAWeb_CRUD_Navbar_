@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Muebleria</title>
+  </head>
+  <body>
+
+        {% extends "base.html" %}
+
+        {% load static %}
+
+        {% block titulo %}  <title>Muebleria Melanie Vega</title>  {% endblock titulo %}
+
+        {% block cuerpo %}  
+        
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <h1>Muebleria Melanie Vega</h1>
+        
+
+            <img class="w-50" src="{% static 'img/clientesImage.jpg' %}" alt="hoa" width="100" height="auto">
+
+        </div>
+        {% endblock cuerpo %}
+
+        
+
+  </body>
+</html>
